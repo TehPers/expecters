@@ -3,9 +3,10 @@ use std::{
     fmt::{Debug, Display, Formatter},
 };
 
-use crate::{assertions::ContextFrame, styles};
-
-use super::AssertionContext;
+use crate::{
+    assertions::{AssertionContext, ContextFrame},
+    styles,
+};
 
 /// The foundational assertion output. Most assertions either output this type
 /// directly, or output a type that wraps this type in some form.

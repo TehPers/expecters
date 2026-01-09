@@ -3,9 +3,10 @@ use std::{
     marker::PhantomData,
 };
 
-use crate::metadata::Annotated;
-
-use super::{general::Root, AssertionContext, AssertionContextBuilder};
+use crate::{
+    assertions::{general::Root, AssertionContext, AssertionContextBuilder},
+    metadata::Annotated,
+};
 
 /// Evaluates a subject and determines whether it satisfies a condition.
 ///

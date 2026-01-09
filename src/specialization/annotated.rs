@@ -1,8 +1,6 @@
 use std::fmt::{Debug, Display};
 
-use crate::metadata::Annotated;
-
-use super::__SpecializeWrapper;
+use crate::{metadata::Annotated, specialization::__SpecializeWrapper};
 
 pub struct __AnnotatedNoImplTag;
 

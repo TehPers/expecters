@@ -1,8 +1,6 @@
 use std::{borrow::Cow, error::Error, sync::Arc};
 
-use crate::metadata::SourceLoc;
-
-use super::general::InitializableOutput;
+use crate::{assertions::general::InitializableOutput, metadata::SourceLoc};
 
 /// Context that is passed through an assertion to track the full execution flow
 /// that occurred.

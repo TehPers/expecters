@@ -1,6 +1,7 @@
-use crate::assertions::AssertionBuilder;
-
-use super::{OptionVariant, Optionish, SomeAndModifier, ToBeOptionVariant};
+use crate::assertions::{
+    options::{OptionVariant, Optionish, SomeAndModifier, ToBeOptionVariant},
+    AssertionBuilder,
+};
 
 /// Assertions and modifiers for [`Option`]s.
 pub trait OptionAssertions<T, M>

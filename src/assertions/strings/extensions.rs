@@ -1,8 +1,14 @@
 use std::fmt::{Debug, Display};
 
-use crate::{assertions::AssertionBuilder, metadata::Annotated};
-
-use super::{AsDebugModifier, AsDisplayModifier, CharsModifier, ContainsLocation, ToContainSubstr};
+use crate::{
+    assertions::{
+        strings::{
+            AsDebugModifier, AsDisplayModifier, CharsModifier, ContainsLocation, ToContainSubstr,
+        },
+        AssertionBuilder,
+    },
+    metadata::Annotated,
+};
 
 /// Assertions and modifiers for [`String`]s.
 pub trait StringAssertions<T, M>

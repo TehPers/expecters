@@ -1,13 +1,14 @@
 use std::iter::Zip;
 
 use crate::{
-    assertions::{iterators::ZipModifier, AssertionBuilder},
+    assertions::{
+        iterators::{
+            AsUtf8Modifier, CountModifier, MergeModifier, MergeStrategy, NthModifier, ToContain,
+            ToContainExactly, ZipModifier,
+        },
+        AssertionBuilder,
+    },
     metadata::Annotated,
-};
-
-use super::{
-    AsUtf8Modifier, CountModifier, MergeModifier, MergeStrategy, NthModifier, ToContain,
-    ToContainExactly,
 };
 
 /// Assertions and modifiers for [Iterator]s.

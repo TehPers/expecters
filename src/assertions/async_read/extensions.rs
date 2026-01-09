@@ -1,8 +1,6 @@
 use futures::AsyncRead;
 
-use crate::assertions::AssertionBuilder;
-
-use super::WhenReadAsyncModifier;
+use crate::assertions::{async_read::WhenReadAsyncModifier, AssertionBuilder};
 
 /// Modifiers for types that implement [`futures::AsyncRead`].
 pub trait AsyncReadAssertions<T, M>

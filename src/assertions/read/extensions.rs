@@ -1,8 +1,6 @@
 use std::io::Read;
 
-use crate::assertions::AssertionBuilder;
-
-use super::WhenReadModifier;
+use crate::assertions::{read::WhenReadModifier, AssertionBuilder};
 
 /// Modifiers for types that implement [`Read`].
 pub trait ReadAssertions<T, M>

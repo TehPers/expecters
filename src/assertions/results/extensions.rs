@@ -1,6 +1,7 @@
-use crate::assertions::AssertionBuilder;
-
-use super::{ErrAndModifier, OkAndModifier, ResultVariant, Resultish, ToBeResultVariant};
+use crate::assertions::{
+    results::{ErrAndModifier, OkAndModifier, ResultVariant, Resultish, ToBeResultVariant},
+    AssertionBuilder,
+};
 
 /// Assertions and modifiers for [`Result`]s.
 pub trait ResultAssertions<T, M>

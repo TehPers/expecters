@@ -1,8 +1,12 @@
 use std::future::IntoFuture;
 
-use crate::{assertions::AssertionBuilder, metadata::Annotated};
-
-use super::{CompletionOrder, CompletionOrderModifier, WhenReadyModifier};
+use crate::{
+    assertions::{
+        futures::{CompletionOrder, CompletionOrderModifier, WhenReadyModifier},
+        AssertionBuilder,
+    },
+    metadata::Annotated,
+};
 
 /// Assertions and modifiers for futures.
 pub trait FutureAssertions<T, M>

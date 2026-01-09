@@ -1,13 +1,14 @@
 use std::cmp::Ordering;
 
 use crate::{
-    assertions::{AssertionBuilder, AssertionError},
+    assertions::{
+        general::{
+            Float, MapModifier, NotModifier, ToBeOneOf, ToCmp, ToEqual, ToEqualApprox, ToSatisfy,
+            ToSatisfyWith,
+        },
+        AssertionBuilder, AssertionError,
+    },
     metadata::Annotated,
-};
-
-use super::{
-    Float, MapModifier, NotModifier, ToBeOneOf, ToCmp, ToEqual, ToEqualApprox, ToSatisfy,
-    ToSatisfyWith,
 };
 
 /// General-purpose assertions and modifiers.
