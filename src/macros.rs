@@ -163,10 +163,9 @@ macro_rules! expect {
 /// Same as [`expect!`], but returns the result itself rather than panicking on
 /// failure.
 ///
-/// More specifically, this does not finalize the output of the assertion. The
-/// syntax is exactly the same as [`expect!`] (and async assertions should still
-/// be `.await`ed as usual), but the output from it will be a result type that
-/// can be inspected rather than panicking on failure.
+/// The syntax is exactly the same as [`expect!`] (and async assertions should
+/// still be `.await`ed as usual), but the output from it will be a result type
+/// that can be inspected directly.
 ///
 /// ```
 /// # use expecters::prelude::*;
