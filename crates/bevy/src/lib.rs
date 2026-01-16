@@ -6,4 +6,5 @@
 #![warn(missing_docs)]
 
 pub mod change_detection;
+pub mod mesh;
 pub mod prelude;

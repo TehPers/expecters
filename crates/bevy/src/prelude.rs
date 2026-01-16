@@ -11,4 +11,4 @@
 //! While not necessary, it is recommended to glob import this module in any
 //! test modules that use this crate.
 
-pub use crate::change_detection::ChangeDetectionAssertions;
+pub use crate::{change_detection::ChangeDetectionAssertions, mesh::MeshAssertions};
