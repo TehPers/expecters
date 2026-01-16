@@ -36,9 +36,9 @@ jobs:
       - name: Setup toolchain
         uses: dtolnay/rust-toolchain@clippy
       - name: Run clippy
-        run: cargo clippy --tests --all-features
+        run: cargo clippy --workspace --tests --all-features
       - name: Check docs for errors
-        run: cargo doc --no-deps --all-features ${{matrix.flags}}
+        run: cargo doc --workspace --no-deps --all-features ${{matrix.flags}}
 
   test:
     name: Test (${{ matrix.name }})
@@ -54,7 +54,7 @@ jobs:
           - no features
         include:
           - name: all features
-            flags: ""
+            flags: --all-features
           - name: no features
             flags: --no-default-features
     steps:
@@ -63,4 +63,4 @@ jobs:
       - name: Setup toolchain
         uses: dtolnay/rust-toolchain@1.82.0
       - name: Run tests
-        run: cargo test --verbose ${{matrix.flags}}
+        run: cargo test --workspace --verbose ${{matrix.flags}}
