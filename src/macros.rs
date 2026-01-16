@@ -155,7 +155,7 @@
 macro_rules! expect {
     ($($tokens:tt)*) => {
         $crate::assertions::general::UnwrappableOutput::unwrap(
-            $crate::__expect_inner!($($tokens)*),
+            $crate::__private::macros::expect_inner!($crate, $($tokens)*),
         )
     };
 }
@@ -178,130 +178,7 @@ macro_rules! expect {
 macro_rules! try_expect {
     ($($tokens:tt)*) => {
         $crate::assertions::general::UnwrappableOutput::try_unwrap(
-            $crate::__expect_inner!($($tokens)*)
-        )
-    };
-}
-
-// Note: it's important to use the input tokens before stringifying them. This
-// is necessary to ensure that the tokens are treated as values instead of
-// arbitrary, meaningless tokens, and ensures that LSPs provide real completions
-// for those tokens instead of just letting the user type whatever without any
-// suggested completions.
-#[macro_export]
-#[doc(hidden)]
-macro_rules! __expect_inner {
-    // Entrypoint
-    (
-        $subject:expr,
-        $($assertions:tt)*
-    ) => {{
-        let subject = $crate::annotated!($subject);
-        let subject_repr = ::std::string::ToString::to_string(&subject);
-        let builder = $crate::assertions::AssertionBuilder::__new(subject);
-        $crate::__expect_inner!(
-            @build_assertion,
-            [],
-            subject_repr,
-            builder,
-            $($assertions)*
-        )
-    }};
-
-    // Build assertion (chain modifiers and final assertion)
-    (
-        // Base case (with params)
-        @build_assertion,
-        [$($frame_name:expr,)*],
-        $subject:expr,
-        $builder:expr,
-        $assertion:ident($($param:expr),* $(,)?)
-        $(,)?
-    ) => {{
-        let builder = $crate::__expect_inner!(@annotate, $builder);
-        let assertion = builder.$assertion($($crate::annotated!($param),)*);
-        let cx = $crate::assertions::AssertionContext::__new(
-            $subject,
-            $crate::source_loc!(),
-            {
-                const FRAMES: &'static [&'static str] = &[
-                    $($frame_name,)*
-                    ::std::stringify!($assertion),
-                ];
-                FRAMES
-            },
-        );
-        $crate::assertions::AssertionBuilder::__apply(
-            builder,
-            cx,
-            assertion,
-        )
-    }};
-    (
-        // Base case (without params)
-        @build_assertion,
-        [$($frame_name:expr,)*],
-        $subject:expr,
-        $builder:expr,
-        $assertion:ident
-        $(,)?
-    ) => {
-        $crate::__expect_inner!(
-            @build_assertion,
-            [$($frame_name,)*],
-            $subject,
-            $builder,
-            $assertion()
-        )
-    };
-    (
-        // Recursive case (with params)
-        @build_assertion,
-        [$($frame_name:expr,)*],
-        $subject:expr,
-        $builder:expr,
-        $modifier:ident($($param:expr),* $(,)?),
-        $($rest:tt)*
-    ) => {{
-        let builder = $crate::__expect_inner!(@annotate, $builder);
-        let builder = builder.$modifier(
-            $($crate::annotated!($param),)*
-        );
-        $crate::__expect_inner!(
-            @build_assertion,
-            [
-                $($frame_name,)*
-                ::std::stringify!($modifier),
-            ],
-            $subject,
-            builder,
-            $($rest)*
-        )
-    }};
-    (
-        // Recursive case (without params)
-        @build_assertion,
-        [$($frame_name:expr,)*],
-        $subject:expr,
-        $builder:expr,
-        $modifier:ident,
-        $($rest:tt)*
-    ) => {
-        $crate::__expect_inner!(
-            @build_assertion,
-            [$($frame_name,)*],
-            $subject,
-            $builder,
-            $modifier(),
-            $($rest)*
-        )
-    };
-
-    // Annotate the value being passed down the chain
-    (@annotate, $builder:expr) => {
-        $crate::assertions::general::__annotate(
-            $builder,
-            |not_debug| $crate::annotated!(not_debug),
+            $crate::__private::macros::expect_inner!($crate, $($tokens)*)
         )
     };
 }

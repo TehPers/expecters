@@ -282,6 +282,11 @@ mod styles;
 
 pub use assertions::AssertionOutput;
 
+#[doc(hidden)]
+pub mod __private {
+    pub use expecters_macros as macros;
+}
+
 #[cfg(doctest)]
 #[doc = include_str!("../README.md")]
 mod readme_tests {

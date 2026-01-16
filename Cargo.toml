@@ -1,3 +1,10 @@
+[workspace]
+members = ["crates/*"]
+
+[workspace.package]
+license = "MIT OR Apache-2.0"
+rust-version = "1.92.0"
+
 [package]
 name = "expecters"
 version = "0.1.0"
@@ -5,7 +12,7 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 categories = ["asynchronous", "development-tools", "development-tools::testing"]
 keywords = ["assert", "assertions", "async", "matchers", "testing"]
-rust-version = "1.82.0"
+rust-version.workspace = true
 # TODO: remove this when ready to publish
 publish = false
 
@@ -18,6 +25,7 @@ diff = ["dep:diff"]
 
 [dependencies]
 diff = { version = "0.1.13", optional = true }
+expecters-macros = { version = "0.1.0", path = "crates/macros" }
 futures = { version = "0.3.30", optional = true, default-features = false, features = [
     "std",
     "async-await",
